@@ -2,7 +2,7 @@
 n=$1
 while [ 0 != $n ]
 do
-   xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2) WM_CLASS WM_NAME
+   echo "$(xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2) WM_CLASS WM_NAME)\n$(xdotool getmouselocation)"
    sleep $2
    if [ "$n" -gt "0" ]
    then

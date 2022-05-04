@@ -10,11 +10,15 @@ Add-Type @"
     public static extern IntPtr GetForegroundWindow();
 }
 "@
+Add-Type -AssemblyName System.Windows.Forms
 try {
 	while($n -ne 0){
 		$ActiveHandle = [UserWindows]::GetForegroundWindow()
 		$Process = Get-Process | ? {$_.MainWindowHandle -eq $activeHandle}
-		$string =  $Process | Select ProcessName, @{Name="AppTitle";Expression= {($_.MainWindowTitle)}}
+    $X = [System.Windows.Forms.Cursor]::Position.X
+    $Y = [System.Windows.Forms.Cursor]::Position.Y
+    $string =  $Process | Select ProcessName, @{Name="AppTitle";Expression= {($_.MainWindowTitle)}}
+    $string = "$string;$X;$Y"
 		Write-Host -NoNewline $string
 		Start-Sleep -m $interval
 		If ($n -gt 0) {$n-=1}

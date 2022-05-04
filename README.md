@@ -12,15 +12,16 @@ var monitor = require('active-window');
 
 callback = function(window){
   try {
-    console.log("App: " + window.app);
-    console.log("Title: " + window.title);
+    console.log(`App: ${window.app}`);
+    console.log(`Title: ${window.title}`);
+    console.log(`Mouse Coordinates x: ${window.mouseLocation.x} y: ${window.mouseLocation.y}`);
   }catch(err) {
       console.log(err);
-  } 
+  }
 }
-/*Watch the active window 
+/*Watch the active window
   @callback
-  @number of requests; infinity = -1 
+  @number of requests; infinity = -1
   @interval between requests
 */
 //monitor.getActiveWindow(callback,-1,1);
@@ -34,7 +35,7 @@ monitor.getActiveWindow(callback);
 - Windows
  - Windows 10
  - Windows 7
-- Linux 
+- Linux
   - Raspbian [lxdm]
   - Debian 8 [cinnamon]
 - OSX
@@ -43,7 +44,7 @@ monitor.getActiveWindow(callback);
 ## TODO
 
 - Test on more operating systems.
-- Use native APIs. 
+- Use native APIs.
 
 ## License
 
